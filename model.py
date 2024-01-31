@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr, PastDatetime
+from pydantic import BaseModel, Field, EmailStr, condecimal
 
 
 class UserMod(BaseModel):
@@ -32,9 +32,9 @@ class OrderTable_out(BaseModel):
 class Product_in(BaseModel):
     name_product: str = Field(..., max_length=20)
     descript: str = Field(..., title="description product")
-    price:float = Field(..., gt=0)
+    price: condecimal(max_digits=15, decimal_places=2)
 
-class Product_in(BaseModel):
+class Product_out(BaseModel):
     id: int
     name_product: str = Field(..., max_length=20)
     descript: str = Field(..., title="description product")
