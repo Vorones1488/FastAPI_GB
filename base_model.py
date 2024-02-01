@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME, Boolean, Text, MetaData, create_engine, Float, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean, Text, MetaData, create_engine, Float, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
-from datetime import datetime
+import datetime
 import databases
 import sqlalchemy
 
@@ -41,7 +41,7 @@ class OrderTables(Base):
     id = Column(Integer, primary_key=True)
     id_user = Column(Integer, ForeignKey('users.id'), nullable=False)
     id_product = Column(Integer, ForeignKey('product.id'), nullable=False)
-    data_order = Column(DATETIME, default=datetime.utcnow)
+    data_order = Column(DateTime, default=datetime.datetime.utcnow)
     status_order =Column(Boolean, default=True)
     user = relationship('Users', back_populates='order')
     product = relationship('Product', back_populates='prod_order')
